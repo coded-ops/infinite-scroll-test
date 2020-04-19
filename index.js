@@ -6,7 +6,6 @@ var INFINITE_SCROLL_TEST = (function() {
         $loadingImg   = '.js-loading-img',
         start         = 0,
         limit         = 5,
-        end           = limit,
         hasReachedMax = false,
         isInitialLoad = true;
 
@@ -23,7 +22,7 @@ var INFINITE_SCROLL_TEST = (function() {
             data: {
                 getData: 1,
                 start: start,
-                end: end,
+                limit: limit,
             },
             beforeSend: function() {
                 if (!isInitialLoad) {
@@ -56,8 +55,7 @@ var INFINITE_SCROLL_TEST = (function() {
             if (hasReachedMax) {
                 return;
             }
-            start = end;
-            end   = start + limit + 1;
+            start += limit;
             handleLoadInfoCards();
         }
     };

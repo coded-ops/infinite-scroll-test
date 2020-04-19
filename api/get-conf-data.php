@@ -29,13 +29,13 @@ if (!isset($_POST['getData']) || $_POST['getData'] != 1) {
     ]));
 }
 
-$start = isset($_POST['start']) ? (is_numeric($_POST['start']) ? $_POST['start'] : 0) : 11;
-$end   = isset($_POST['end']) ? (is_numeric($_POST['end']) ? $_POST['end'] : 0) : 13;
+$start = isset($_POST['start']) ? (is_numeric($_POST['start']) ? $_POST['start'] : 0) : 0;
+$limit = isset($_POST['limit']) ? (is_numeric($_POST['limit']) ? $_POST['limit'] : 5) : 5;
 
 $start = $conn->real_escape_string($start);
-$end   = $conn->real_escape_string($end);
+$limit = $conn->real_escape_string($limit);
 
-$query  = "SELECT * FROM conferences LIMIT $start, $end";
+$query  = "SELECT * FROM conferences LIMIT $start, $limit";
 $result = $conn->query($query);
 
 if ($result->num_rows > 0) {
